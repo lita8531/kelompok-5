@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Toko Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body { background: #eef6ff; }
+    .hero { background: #cfe2ff; padding: 60px 20px; text-align: center; }
+    footer { background: #6ea8fe; color: white; padding: 15px; text-align: center; }
+
+    .card-img-top {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg" style="background:#6ea8fe;">
+  <div class="container">
+    <a class="navbar-brand text-white" href="#">TokoKu</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#produk">Produk</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h2>Selamat Datang di Toko Online</h2>
+  <p>Belanja mudah dan cepat</p>
+</section>
+
+<div class="container my-4" id="produk">
+  <div class="row g-4">
+
+    <div class="container my-4" id="produk">
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <img src="c:\Users\lenovo\Downloads\style.jpg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Tas Hermes</h5>
+          <p>Rp 100.000.000</p>
+          <button class="btn btn-primary" onclick="tambahKeranjang('Tas Hermes',100000000)">Beli</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <img src="c:\Users\lenovo\OneDrive\Pictures\Screenshots\Screenshot 2026-04-23 100044.png" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">iPhone 17 Pro Max</h5>
+          <p>Rp 30.000.000</p>
+          <button class="btn btn-primary" onclick="tambahKeranjang('iPhone 17 Pro Max',30000000)">Beli</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <img src="c:\Users\lenovo\Downloads\Puma Speedcat OG 215 _398846-01_ FOOTDISTRICT.jpg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Sepatu Puma</h5>
+          <p>Rp 10.000.000</p>
+          <button class="btn btn-primary" onclick="tambahKeranjang('Sepatu Puma',10000000)">Beli</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="card">
+    <div class="card-body">
+      <h4>Keranjang</h4>
+      <ul id="listKeranjang"></ul>
+      <p><b>Total: Rp <span id="total">0</span></b></p>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4" id="kontak">
+  <div class="card">
+    <div class="card-body">
+      <h4>Kontak Kami</h4>
+      <p>Email: tokokukelompok5@email.com</p>
+      <p>WhatsApp: 089651810420</p>
+
+      <hr>
+
+      <h5>Kirim Pesan</h5>
+      <form onsubmit="kirimPesan(event)">
+        <input type="text" id="nama" class="form-control mb-2" placeholder="Nama" required>
+        <input type="email" id="email" class="form-control mb-2" placeholder="Email" required>
+        <textarea id="pesan" class="form-control mb-2" placeholder="Pesan" required></textarea>
+        <button class="btn btn-primary">Kirim</button>
+      </form>
+      <p id="notifikasi" class="mt-2 text-success"></p>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <p>all rights reserved</p>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  let total = 0;
+
+  function tambahKeranjang(nama, harga) {
+    let list = document.getElementById("listKeranjang");
+    let item = document.createElement("li");
+    item.textContent = nama + " - Rp " + harga;
+    list.appendChild(item);
+
+    total += harga;
+    document.getElementById("total").textContent = total;
+  }
+
+  function kirimPesan(event) {
+    event.preventDefault();
+    document.getElementById("notifikasi").textContent = "Pesan berhasil dikirim!";
+    document.getElementById("nama").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("pesan").value = "";
+  }
+</script>
+
+</body>
+</html>
