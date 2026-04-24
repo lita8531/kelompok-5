@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Toko</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body { background: #eef6ff; }
+    .navbar { background: #6ea8fe; }
+    .card { border-radius: 15px; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand text-white" href="#">Dashboard</a>
+
+    <div class="ms-auto">
+      <button class="btn btn-light" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Content -->
+<div class="container mt-4">
+
+  <div class="row g-4">
+    <div class="card p-3 mt-3">
+  <h5>Pesanan Masuk</h5>
+  <p><b>Nama:</b> <span id="dNama"></span></p>
+  <p><b>Email:</b> <span id="dEmail"></span></p>
+  <p><b>Pesan:</b> <span id="dPesan"></span></p>
+</div>
+
+<script>
+document.getElementById("dNama").textContent = localStorage.getItem("nama");
+document.getElementById("dEmail").textContent = localStorage.getItem("email");
+document.getElementById("dPesan").textContent = localStorage.getItem("pesan");
+</script> 
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 text-center">
+        <h5>Total Produk</h5>
+        <h3 id="totalProduk">3</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 text-center">
+        <h5>Total Pesanan</h5>
+        <h3 id="totalPesanan">0</h3>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm p-3 text-center">
+        <h5>Total Pendapatan</h5>
+        <h3 id="totalUang">Rp 0</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Pesanan Table -->
+  <div class="card p-3 shadow-sm">
+    <h5>Daftar Pesanan</h5>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nama Produk</th>
+          <th>Harga</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="produkTable">
+        <tr>
+          <td>Tas Hermes</td>
+          <td>100000000</td>
+          <td><span class="badge bg-warning">Diproses</span></td>
+          <td><button class="btn btn-success btn-sm" onclick="selesai(this)">Selesai</button></td>
+        </tr>
+        <tr>
+          <td>iPhone 17</td>
+          <td>30000000</td>
+          <td><span class="badge bg-warning">Diproses</span></td>
+          <td><button class="btn btn-success btn-sm" onclick="selesai(this)">Selesai</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<script>
+function logout(){
+  window.location.href = "login.html";
+}
+
+function selesai(btn){
+  let row = btn.parentElement.parentElement;
+  let status = row.children[2];
+  status.innerHTML = '<span class="badge bg-success">Selesai</span>';
+  btn.remove();
+}
+
+  let table = document.getElementById("produkTable");
+  let row = table.insertRow();
+
+  row.innerHTML = `
+    <td>${nama}</td>
+    <td>${harga}</td>
+    <td><button class="btn btn-danger btn-sm" onclick="hapus(this)">Hapus</button></td>
+  `;
+
+  document.getElementById("namaProduk").value = "";
+  document.getElementById("hargaProduk").value = "";
+}
+
+function hapus(btn){
+  btn.parentElement.parentElement.remove();
+}
+</script>
+
+</body>
+</html>
