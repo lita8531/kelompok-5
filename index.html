@@ -142,17 +142,14 @@
   function kirimPesan(event) {
   event.preventDefault();
 
-  // ambil data
   let nama = document.getElementById("nama").value;
   let email = document.getElementById("email").value;
   let pesan = document.getElementById("pesan").value;
 
-  // simpan sementara (biar bisa dipakai di dashboard)
   localStorage.setItem("nama", nama);
   localStorage.setItem("email", email);
   localStorage.setItem("pesan", pesan);
 
-  // redirect ke dashboard
   window.location.href = "dashboard.html";
 }
 </script>
